@@ -1,0 +1,92 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 5521332023,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hook.setUp()"
+            }
+          }
+        ],
+        "line": 3,
+        "name": "Able to log in to my account",
+        "description": "",
+        "id": "my-account-page;able-to-log-in-to-my-account",
+        "after": [
+          {
+            "result": {
+              "duration": 1442949033,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hook.teadDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 13640621399,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I navigate to Home Depot",
+            "match": {
+              "location": "HomeDepot.iNavigateToHomeDepot()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1091898138,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I click on my account",
+            "match": {
+              "location": "HomeDepot.iClickOnMyAccount()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3583867438,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I entred my Credentials",
+            "match": {
+              "location": "HomeDepot.iEntredMyCredentials()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 552775282,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I should see My account Info",
+            "match": {
+              "location": "HomeDepot.iShouldSeeMyAccountInfo()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "My Account Page",
+    "description": "",
+    "id": "my-account-page",
+    "keyword": "Feature",
+    "uri": "src/test/java/features/account.feature"
+  }
+]
