@@ -1,5 +1,0 @@
-steps\Hook.class
-pages\HomeDepotPage.class
-base\BaseUtil.class
-runner\LoginRunner.class
-steps\HomeDepot.class

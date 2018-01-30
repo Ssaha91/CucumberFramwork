@@ -1,5 +1,7 @@
 package pages;
 
+import base.BaseUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,60 +15,45 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class HomeDepotPage {
 
     private WebDriverWait wait;
+    private WebDriver driver;
 
-    public HomeDepotPage(WebDriver driver){
+    public HomeDepotPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, 10);
     }
-    @FindBy (name = "q")
+
+    @FindBy(id = "headerSearch")
     WebElement searchField;
 
-    @FindBy (id = "headerMyAccount")
-    WebElement myAccBox;
+    @FindBy(id = "headerSearchButton")
+    WebElement searchButton;
 
-    @FindBy (xpath = "//p[@id='authSignIn']//span[contains(text(), 'Sign in')]")
-    WebElement signBox;
+    @FindBy(id = "allProdCount")
+    WebElement productCount;
 
-    @FindBy(id = "email_id")
-    WebElement inputEmailBox;
+    @FindBy(xpath = "(//div[@data-rectype='product']//span[@class='bttn__content'])[last()]")
+    WebElement lastItemOnResultsPage;
 
-    @FindBy(id = "password")
-    WebElement inputPasswordBox;
+    @FindBy(xpath = "(//div[@data-rectype='product']//span[@class='bttn__content'])[1]")
+    WebElement item;
 
-    @FindBy(xpath = "//button[@id='accountSignIn']//span")
-    WebElement signInBttn;
-
-    @FindBy(id = "headerMyAccountTitle")
-    WebElement welcome;
-
-    public void CheckTitle(){
-        searchField.click();
+    public void addItemToCart(String index) {
+        wait.until(ExpectedConditions.elementToBeClickable(lastItemOnResultsPage));
+        wait.until(ExpectedConditions.elementToBeClickable(item));
+        item.click();
     }
-    public void goToMyAccount() {
-        wait.until(elementToBeClickable(myAccBox));
-        myAccBox.click();
-        wait.until(elementToBeClickable(signBox));
-        signBox.click();
+
+    public void searchFor(String item) {
+        wait.until(ExpectedConditions.elementToBeClickable(searchField));
+        searchField.sendKeys(item);
+        searchButton.click();
     }
-    public void sendCredentials(){
-        wait.until(elementToBeClickable(signInBttn));
-        inputEmailBox.sendKeys("saha4311@gmail.com");
-        inputPasswordBox.sendKeys("Gadhi171717*");
-        signInBttn.click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    public boolean isUserLogIn(){
-        wait.until(visibilityOf(welcome));
-        if (welcome.isDisplayed()){
+
+    public boolean isOnResultPage() {
+        wait.until(ExpectedConditions.visibilityOf(productCount));
+        if (productCount.isDisplayed()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
-
-
 }
